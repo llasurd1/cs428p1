@@ -1,7 +1,3 @@
-// UDP Pinger
-
-// Must have this server running before you can run the UDP Pinger Client code
-
 #include <iostream>
 #include <stdlib.h> 
 #include <unistd.h> 
@@ -37,21 +33,20 @@ int main() {
 	servaddr.sin_addr.s_addr = INADDR_ANY; // localhost
 	servaddr.sin_port = htons(PORT); // port number
 	
-	//set the timeout at 1 second for a reply
-	struct timeval timeout;
-	timeout.tv_sec = 1;
-	timeout.tv_usec = 0;
-	if(setsockopt (sockfd, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout)) < 0)
-	  perror("setsockopt failed\n");
-	
-	//keeping count of the sequence count
-	count = 1;
-	
+	//Set timeout for 1 second
+	struct timeval tv;
+	tv.tv_sec = 1;
+	tv.tv_usec = 0;
+	if (setsockopt(rcv_sock, SOL_SOCKET, SO_RCVTIMEO,&tv,sizeof(tv)) < 0) {
+   		 perror("Error");
+	}
+	//Keep track of number of pings
+	pings = 0;
 	//create a list to store trip times
 	vector<double> times;
 
 	//creating a while loop repeat continuoussly
-	while(count<=10){
+	while(count<10){
 		//gets the current time
 	        start = time(0);
 
