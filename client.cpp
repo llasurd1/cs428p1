@@ -46,7 +46,7 @@ int main() {
 	vector<double> times;
 
 	//send 10 pings in a loop
-	for(int i = 0; i<10; i++)
+	for(int i = 0; i<10; i++){
 		//Get current time
 	        start = time(0);
 
@@ -68,6 +68,6 @@ int main() {
 		}
 		count++;
 	
-
+	}
 	return 0; 
 } 
