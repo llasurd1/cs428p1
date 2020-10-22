@@ -43,12 +43,10 @@ int main() {
 	//Keep track of number of pings
         count = 0;
 	//send 10 pings in a loop
-<<<<<<< HEAD
+
 	len = sizeof(servaddr);
 	while(count<10){
-=======
 	for(int i = 0; i<10; i++){
->>>>>>> ae3c06387d3160903a87adcbd2e3e6216b7e6e60
 		//Get current time
 	        start = time(0);
 
