@@ -46,7 +46,8 @@ int main() {
 	vector<double> times;
 
 	//send 10 pings in a loop
-	for(int i = 0; i<10; i++)
+	len = sizeof(servaddr);
+	while(count<10){
 		//Get current time
 	        start = time(0);
 
@@ -67,6 +68,7 @@ int main() {
 		  cout << "Ping Number " << count << "Round Trip Time " << end << " Seconds" << endl;
 		}
 		count++;
+	}
 	
 
 	return 0; 
