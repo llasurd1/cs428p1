@@ -42,12 +42,13 @@ int main() {
 	}
 	//Keep track of number of pings
         count = 0;
-	//create a list to store trip times
-	vector<double> times;
-
 	//send 10 pings in a loop
+<<<<<<< HEAD
 	len = sizeof(servaddr);
 	while(count<10){
+=======
+	for(int i = 0; i<10; i++){
+>>>>>>> ae3c06387d3160903a87adcbd2e3e6216b7e6e60
 		//Get current time
 	        start = time(0);
 
@@ -64,12 +65,11 @@ int main() {
 		  cout << "Connection Time out on Ping Number " << count << endl;
 		}
 		else{
-		  times.push_back(end);
 		  cout << "Ping Number " << count << "Round Trip Time " << end << " Seconds" << endl;
 		}
 		count++;
 	}
 	
-
+	}
 	return 0; 
 } 
