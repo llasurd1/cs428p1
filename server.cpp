@@ -19,6 +19,7 @@ int main() {
 	int sockfd, n;
 	socklen_t len;
 	char buffer[1024];
+	char *hello = "Hello from server";
 	struct sockaddr_in servaddr, cliaddr; 
 	
 	// Create a UDP socket
@@ -47,10 +48,9 @@ int main() {
 
 		//If a random number in the range of 0 to 10 is less than 4,
 		//we consider the packet lost and do not respond
-		if (rand()%10 < 4) continue;
 
 		//Otherwise, the server responds
-		sendto(sockfd, (const char *)buffer, strlen(buffer), 
+		sendto(sockfd, hello, strlen(hello), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
 	}
 	return 0; 
