@@ -33,10 +33,6 @@ int main() {
 	servaddr.sin_addr.s_addr = INADDR_ANY; // localhost
 	servaddr.sin_port = htons(PORT); // port number
 	
-	//Set timeout for 1 second
-	struct timeval tv;
-	tv.tv_sec = 1;
-	tv.tv_usec = 0;
 	if(setsockopt (sockfd, SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(tv)) < 0) {
    		 perror("Error");
 	}
@@ -47,24 +43,13 @@ int main() {
 	len = sizeof(servaddr);
 	while(count<10){
 	for(int i = 0; i<10; i++){
-		//Get current time
-	        start = time(0);
-
-		//Send message to server
 		sendto(sockfd, (const char *) buffer, strlen(buffer), MSG_CONFIRM, (const struct sockaddr *) &servaddr, len);
-		//Recieve message form server
 		int n;
 	        n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), MSG_WAITALL, (struct sockaddr *) &servaddr, &len);
-		buffer[n] = '\0';
-		//See how long has passed
-		double total = (double)difftime(time(0), start);
-		//Check if ping sent for longer than a second
-		if(total >= 1.0){
-		  cout << "Connection Time out on Ping Number " << count << endl;
-		}
-		else{
-		  cout << "Ping Number " << count << "Round Trip Time " << end << " Seconds" << endl;
-		}
+		//buffer[n] = '\0';
+		valread = read(sockfd, buffer, 1024);
+		
+		  cout << "Ping Number " << count << "Round Trip Time " << end << " count" << endl;
 		count++;
 	}
 	
