@@ -44,7 +44,7 @@ int main() {
 		//Receive the client packet along with the address it is coming from
 		n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 
 			MSG_WAITALL, ( struct sockaddr *) &cliaddr, &len);
-		buffer[n] = '\0';
+		//buffer[n] = '\0';
 
 		//If a random number in the range of 0 to 10 is less than 4,
 		//we consider the packet lost and do not respond
